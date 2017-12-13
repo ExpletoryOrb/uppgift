@@ -15,6 +15,14 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+void print_neighbours(Node* n)
+{
+    cout << "Anslutningar från " << n->getName() << "(" << n->getValue() << ") :\n";
+    for(auto de : n->getEdges()){
+        cout << de.getLength() << " to " << de.getDestination()->getName() << endl;
+    }
+}
+
 int main(){
 	Node n_lund{"Lund"};
     Node n_dalby{"Dalby"};
@@ -22,18 +30,28 @@ int main(){
     Node n_hallestad{"Torna Hallestad"};
     Node n_flyinge{"Flyinge"};
     Node n_veberod{"Veberod"};
+	//egen
+	Node n_boden{"Boden"};
+	//
 
      n_lund.addEdge(&n_dalby,12);
      n_lund.addEdge(&n_sandby,12);
      n_dalby.addEdge(&n_veberod,11);
      n_dalby.addEdge(&n_hallestad,5);
+	 
+	 //egen
+	 n_dalby.addEdge(&n_boden, 150);
+	 //
      n_sandby.addEdge(&n_lund,12);
      n_sandby.addEdge(&n_flyinge,4);
      n_hallestad.addEdge(&n_veberod,8);
 	 
 	 
-	cout << "Anslutningar från " << n_dalby.getName() << "(" << n_dalby.getValue() << "):\n";
-	for(auto de : n_dalby.getEdges()){
-		cout << de.getLength() << "to" << de.getDestination()->getName() << endl;
-	}
+	print_neighbours(&n_dalby);
 }
+
+
+
+
+
+

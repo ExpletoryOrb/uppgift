@@ -21,7 +21,7 @@ class Node{
 		
 	private:
 		string node_name;
-		int value{std::numeric_limits<int>::max()};
+		int value;
 		std::vector<Edge> edges;
 };
 #endif

@@ -21,25 +21,31 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS =   simple_test
-		#test_graph_small test_graph_nofile test_nodeset test_dijkstra
+PROGS =   simple_test test_nodeset
+		#test_graph_small test_graph_nofile  test_dijkstra
 
 all: $(PROGS)
 
-run:	simple_test
+run:	simple_test test_nodeset
 		./simple_test
-
+		./test_nodeset
+		
 		#test_graph_small test_graph_nofile test_nodeset test_dijkstra
 		#./test_graph_small
 		# ./test_graph_nofile
-		# ./test_nodeset
+		# 
 		# ./test_dijkstra
 
 # Targets rely on implicit rules for compiling and linking
 # test_graph_small: Node.o Edge.o test_graph_small.o
 # test_graph_small.o: test_graph_small.cc Node.h Edge.h
 
-simple_test: Node.o Edge.o
+simple_test: Node.o Edge.o 
+
+test_nodeset: NodeSet.o Node.o Edge.o
+
+NodeSet: NodeSet.o
+NodeSet.o: NodeSet.cc NodeSet.h
 
 Node: Node.o
 Node.o: Node.cc Node.h Edge.h

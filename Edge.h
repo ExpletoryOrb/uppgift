@@ -6,7 +6,7 @@
 
 using std::string;
 
-class Node; 
+class Node;
 
 class Edge{
 	public:

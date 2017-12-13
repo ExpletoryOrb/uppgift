@@ -2,11 +2,13 @@
 #include "Node.h"
 #include <string>
 #include <vector>
+#include <limits>
 
 using std::string;
 
 Node::Node(const string& name){
 	node_name = name;
+	value = std::numeric_limits<int>::max();
 }
 
 string Node::getName() const{
