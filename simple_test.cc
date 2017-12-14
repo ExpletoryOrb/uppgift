@@ -1,5 +1,5 @@
-#include "Edge.h"
-#include "Node.h"
+#include "edge.h"
+#include "node.h"
 #include <string>
 #include <vector>
 #include <iostream>

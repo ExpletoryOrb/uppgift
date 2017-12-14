@@ -1,4 +1,4 @@
-#include "NodeSet.h"
+#include "node_set.h"
 #include <cassert>
 #include <iostream>
 

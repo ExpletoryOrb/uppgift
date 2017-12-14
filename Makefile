@@ -21,38 +21,33 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS =   simple_test test_nodeset
-		#test_graph_small test_graph_nofile  test_dijkstra
+PROGS =   simple_test test_nodeset test_dijkstra test_graph_nofile
+
+#test_graph_small 
 
 all: $(PROGS)
 
-run:	simple_test test_nodeset
+run:	simple_test test_nodeset test_dijkstra test_graph_nofile
 		./simple_test
 		./test_nodeset
+		./test_dijkstra
+		./test_graph_nofile
 		
-		#test_graph_small test_graph_nofile test_nodeset test_dijkstra
-		#./test_graph_small
-		# ./test_graph_nofile
-		# 
-		# ./test_dijkstra
+#test_graph_small
+#./test_graph_small
+# test_graph_small: Node.o Edge.o test_graph_small.o
+
 
 # Targets rely on implicit rules for compiling and linking
-# test_graph_small: Node.o Edge.o test_graph_small.o
-# test_graph_small.o: test_graph_small.cc Node.h Edge.h
 
-simple_test: Node.o Edge.o 
 
-test_nodeset: NodeSet.o Node.o Edge.o
+simple_test: node.o edge.o 
 
-NodeSet: NodeSet.o
-NodeSet.o: NodeSet.cc NodeSet.h
+test_nodeset: node_set.o node.o edge.o
 
-Node: Node.o
-Node.o: Node.cc Node.h Edge.h
+test_dijkstra: test_dijkstra.o node_set.o node.o edge.o 
 
-Edge: Edge.o
-Edge.o: Edge.cc Edge.h Node.h
-
+test_graph_nofile: test_graph_nofile.o node_set.o node.o edge.o graph.o
 
 # Phony targets
 .PHONY: all test clean distclean

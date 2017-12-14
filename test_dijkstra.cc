@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cassert>
 //#include "graph.h"
-#include "NodeSet.h"
+#include "node_set.h"
 //#include "dijkstra.h"
 
 using namespace std;

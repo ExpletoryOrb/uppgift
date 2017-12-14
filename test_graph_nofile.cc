@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <utility>
 #include <set>
+#include <limits>
 
 using std::cout;
 using std::endl;
@@ -12,7 +13,7 @@ void print_neighbours(Node* n)
 {
     cout << "Anslutningar från " << n->getName() << "(" << n->getValue() << ") :\n";
     for(auto de : n->getEdges()){
-        cout << de.getLength() << " to " << de.getDest()->getName() << endl;
+        cout << de.getLength() << " to " << de.getDestination()->getName() << endl;
     }
 }
 
@@ -21,7 +22,7 @@ Node* find_and_test(const std::string& s, Graph& g)
     Node * n = g.find(s);
     assert(n != nullptr);
     assert(n->getName() == s);
-    assert(n->getValue() == Node::max_value);
+    assert(n->getValue() == std::numeric_limits<int>::max());
     return n;
 }
 
@@ -51,12 +52,11 @@ void test_graph()
     n_flyinge->setValue(42);
     assert(n3->getValue()==42);
 
-    g.resetVals();
-    for(auto it = g.begin(); it != g.end(); ++it){
-        assert((*it)->getValue() == Node::max_value);
-    }
-
-
+    g.resetValues();
+    // for(auto it = g.begin(); it != g.end(); ++it){
+        // assert((*it)->getValue() == std::numeric_limits<int>::max());
+    // }
+	
     cout << "test_graph passed" << endl;
 }
 
