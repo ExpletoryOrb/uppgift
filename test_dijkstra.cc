@@ -1,13 +1,43 @@
 #include <iostream>
 #include <cassert>
-#include "graph.h"
-#include "dijkstra.h"
+//#include "graph.h"
+#include "NodeSet.h"
+//#include "dijkstra.h"
 
+using namespace std;
 using std::cout;
 using std::endl;
 
-void test()
-{
+void dijkstra(Node* start) {
+	NodeSet S{};//skapa och använd ett nodeset objekt
+	start->setValue(0);
+	S.add(start);
+	//cout << start->getName() << endl;//lund
+	//cout << start->getValue() << endl;//Integer_max_value/0
+
+	std::vector<Edge> temp;
+	int a;
+	while (!S.isEmpty()) {
+		Node* n = S.removeMin();
+		temp = n->getEdges();
+		for(unsigned int i = 0; i < temp.size(); ++i) {
+			a = temp[i].getLength() + n->getValue();
+			//cout << "l+n: " << a << endl;
+			if(a < temp[i].getDestination()->getValue()) {
+				temp[i].getDestination()->setValue(a);
+				S.add(temp[i].getDestination());
+			}
+			//cout << temp[i].getLength() << endl;//distance
+			//cout << temp[i].getDestination()->getName() << endl;//destination
+		}
+		
+		
+	}
+}
+
+
+void test() {
+	
     Node lund{"Lund"};
     Node dalby{"Dalby"};
     Node sandby{"Sodra Sandby"};
@@ -23,10 +53,11 @@ void test()
     sandby.addEdge(&lund,12);
     sandby.addEdge(&flyinge,4);
     hallestad.addEdge(&veberod,8);
+	
+    dijkstra(&lund);	
 
-    dijkstra(&lund);
-
-    assert(lund.getValue() == 0);
+    assert(lund.getValue() == 0);//assert om argumentet är true går man vidare till nästa
+	//cout << "OKOK" << endl;
     assert(dalby.getValue() == 12);
     assert(sandby.getValue() == 12);
     assert(hallestad.getValue() == 17);
@@ -43,11 +74,11 @@ void test()
     }
 #endif
     cout << "test_dijkstra passed" << endl;
+
 }
 
 
-int main()
-{
+int main() {
     test();
     return 0;
 }
