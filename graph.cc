@@ -11,35 +11,37 @@
 using std::string;
 using std::cout;
 using std::endl;
+using std::numeric_limits;
 
 Graph::Graph(std::istream& in){
-	string words, temp, a, b, c;
+	//Graph a{};
+	string words, city1, distance, city2;
 	char delimiter1(':');
 	char delimiter2(' ');
 
 	while(getline(in, words)) {
-		a = words.substr(0, words.find(delimiter1));
-		temp = words.substr(words.find(delimiter1)+2);
-		b = temp.substr(0, temp.find(delimiter2));
-		c = temp.substr(temp.find(delimiter2)+1);
-		cout << a << "  ";
-		cout << b << "  ";
-		cout << c << endl;
+		city1 = words.substr(0, words.find(delimiter1));
+		words = words.substr(words.find(delimiter1)+2);
+		distance = words.substr(0, words.find(delimiter2));
+		city2 = words.substr(words.find(delimiter2)+1);
+		cout << city1 << "  ";
+		cout << distance << "  ";
+		cout << city2 << endl;
+		//a.addNode(city1);
 	}
 }
 
 void Graph::addNode(const string& name){
-	/**
-	FIX
-	*/
+	nodes.push_back(new Node(name));
 }
 
 Node* Graph::find(const string& name){
 	Node* temp = 0; // set to null
 	
 	for(unsigned int i = 0; i < nodes.size(); ++i){
-		cout << "name: " << name << " nodes[i]-> get Name(): " << nodes[i]->getName() << std::endl;
-		if(name.compare(nodes[i] -> getName())){
+		//cout << "name: " << name << " nodes[i]-> get Name(): " << nodes[i]->getName() << endl;
+		if(!name.compare(nodes[i] -> getName())){
+			cout << name << endl;
 			temp = nodes[i];
 		}
 	}
@@ -48,7 +50,7 @@ Node* Graph::find(const string& name){
 
 void Graph::resetValues(){
 	for(unsigned int i = 0; i < nodes.size(); ++i){
-		nodes[i] -> setValue(std::numeric_limits<int>::max());
+		nodes[i] -> setValue(numeric_limits<int>::max());
 	}
 }
 
