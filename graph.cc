@@ -14,7 +14,6 @@ using std::endl;
 using std::numeric_limits;
 
 Graph::Graph(std::istream& in){
-	//Graph a{};
 	string words, city1, distance, city2;
 	char delimiter1(':');
 	char delimiter2(' ');
@@ -27,7 +26,6 @@ Graph::Graph(std::istream& in){
 		cout << city1 << "  ";
 		cout << distance << "  ";
 		cout << city2 << endl;
-		//a.addNode(city1);
 	}
 }
 
@@ -39,7 +37,6 @@ Node* Graph::find(const string& name){
 	Node* temp = 0; // set to null
 	
 	for(unsigned int i = 0; i < nodes.size(); ++i){
-		//cout << "name: " << name << " nodes[i]-> get Name(): " << nodes[i]->getName() << endl;
 		if(!name.compare(nodes[i] -> getName())){
 			cout << name << endl;
 			temp = nodes[i];

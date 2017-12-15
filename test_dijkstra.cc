@@ -9,29 +9,39 @@ using std::cout;
 using std::endl;
 
 void dijkstra(Node* start) {
-	NodeSet S{};//skapa och använd ett nodeset objekt
+	NodeSet ns{};//skapa och använd ett nodeset objekt
 	start->setValue(0);
-	S.add(start);
-	//cout << start->getName() << endl;//lund
-	//cout << start->getValue() << endl;//Integer_max_value/0
+	ns.add(start);
 
 	std::vector<Edge> temp;
 	int a;
-	while (!S.isEmpty()) {
-		Node* n = S.removeMin();
+	Node* start_backwards;
+	while (!ns.isEmpty()) {
+		Node* n = ns.removeMin();
 		temp = n->getEdges();
 		for(unsigned int i = 0; i < temp.size(); ++i) {
 			a = temp[i].getLength() + n->getValue();
-			//cout << "l+n: " << a << endl;
 			if(a < temp[i].getDestination()->getValue()) {
 				temp[i].getDestination()->setValue(a);
-				S.add(temp[i].getDestination());
+				temp[i].getDestination()->setParent(n);
+				ns.add(temp[i].getDestination());
+				
+				if(i == temp.size()-1){
+					start_backwards = temp[i].getDestination();
+				}
 			}
-			//cout << temp[i].getLength() << endl;//distance
-			//cout << temp[i].getDestination()->getName() << endl;//destination
 		}
-		
-		
+	}
+	
+	std::vector<Node*> backwards_log;
+	backwards_log.push_back(start);
+	while( start_backwards -> getParent() != 0){
+		backwards_log.push_back(start_backwards); //push front?
+		start_backwards = start_backwards -> getParent();
+	}
+	
+	for(unsigned int i = 0; i < backwards_log.size(); ++i){
+		cout << backwards_log[i] -> getName()  << endl;
 	}
 }
 
@@ -54,7 +64,12 @@ void test() {
     sandby.addEdge(&flyinge,4);
     hallestad.addEdge(&veberod,8);
 	
+	
+	
+	
+	
     dijkstra(&lund);	
+	
 
     assert(lund.getValue() == 0);//assert om argumentet är true går man vidare till nästa
 	//cout << "OKOK" << endl;
