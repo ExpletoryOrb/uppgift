@@ -1,13 +1,15 @@
+#include "node_set.h"
 #include <iostream>
 #include <cassert>
+#include <deque>
 //#include "graph.h"
-#include "node_set.h"
-//#include "dijkstra.h"
+#include "dijkstra.h"
 
-using namespace std;
+
 using std::cout;
 using std::endl;
 
+/*
 void dijkstra(Node* start) {
 	NodeSet ns{};//skapa och använd ett nodeset objekt
 	start->setValue(0);
@@ -33,17 +35,18 @@ void dijkstra(Node* start) {
 		}
 	}
 	
-	std::vector<Node*> backwards_log;
-	backwards_log.push_back(start);
+	std::deque<Node*> backwards_log;
 	while( start_backwards -> getParent() != 0){
-		backwards_log.push_back(start_backwards); //push front?
+		backwards_log.push_front(start_backwards); //push front?
 		start_backwards = start_backwards -> getParent();
 	}
+	
+	backwards_log.push_front(start);
 	
 	for(unsigned int i = 0; i < backwards_log.size(); ++i){
 		cout << backwards_log[i] -> getName()  << endl;
 	}
-}
+}*/
 
 
 void test() {
@@ -64,32 +67,20 @@ void test() {
     sandby.addEdge(&flyinge,4);
     hallestad.addEdge(&veberod,8);
 	
+	Dijkstra ds;
 	
-	
-	
-	
-    dijkstra(&lund);	
-	
+    string s{""};
+	s = ds.dijkstra(&lund, 1);	
+	cout << s;
+    // assert(lund.getValue() == 0);//assert om argumentet är true går man vidare till nästa
+	// //cout << "OKOK" << endl;
+    // assert(dalby.getValue() == 12);
+    // assert(sandby.getValue() == 12);
+    // assert(hallestad.getValue() == 17);
+    // assert(veberod.getValue() == 23);
+    // assert(flyinge.getValue() == 16);
 
-    assert(lund.getValue() == 0);//assert om argumentet är true går man vidare till nästa
-	//cout << "OKOK" << endl;
-    assert(dalby.getValue() == 12);
-    assert(sandby.getValue() == 12);
-    assert(hallestad.getValue() == 17);
-    assert(veberod.getValue() == 23);
-    assert(flyinge.getValue() == 16);
-
-
-#ifdef INFO
-    cout << "----\nAll distances from Lund:\n";
-
-    for(auto& t : {lund, dalby, sandby, hallestad, veberod, flyinge}) {
-        cout << t.getName() << " : " << t.getValue() << " ";
-        cout << endl;
-    }
-#endif
     cout << "test_dijkstra passed" << endl;
-
 }
 
 

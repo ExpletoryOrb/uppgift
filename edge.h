@@ -13,6 +13,7 @@ class Edge{
 		Edge(Node* destination, int length);
 		Node* getDestination();
 		int getLength() const;
+		void setLength(int length);
 	
 	private:
 	Node* pdestination;

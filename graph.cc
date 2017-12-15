@@ -23,22 +23,33 @@ Graph::Graph(std::istream& in){
 		words = words.substr(words.find(delimiter1)+2);
 		distance = words.substr(0, words.find(delimiter2));
 		city2 = words.substr(words.find(delimiter2)+1);
-		cout << city1 << "  ";
-		cout << distance << "  ";
-		cout << city2 << endl;
+		
+		addNode(city1);
+		addNode(city2);
+		
+		Node* city_from_node = find(city1);
+		Node* city_destination = find(city2);
+		
+		city_from_node -> addEdge(city_destination, std::stoi(distance));
+		
+		// cout << city1 << "  ";
+		// cout << distance << "  ";
+		// cout << city2 << endl;
 	}
 }
 
 void Graph::addNode(const string& name){
 	nodes.push_back(new Node(name));
 }
+	//if(find(name) != 0){
+	//
+	//}
 
 Node* Graph::find(const string& name){
 	Node* temp = 0; // set to null
 	
 	for(unsigned int i = 0; i < nodes.size(); ++i){
 		if(!name.compare(nodes[i] -> getName())){
-			cout << name << endl;
 			temp = nodes[i];
 		}
 	}
