@@ -70,13 +70,3 @@ bool Graph::contains(const string& name){
 	}
 	return result;
 }
-
-
-
-
-
-
-
-
-
-
