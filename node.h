@@ -32,6 +32,5 @@ class Node{
 		int value;
 		Node* parent;
 		std::vector<Edge> edges;
-		
 };
 #endif

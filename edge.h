@@ -16,8 +16,8 @@ class Edge{
 		void setLength(int length);
 	
 	private:
-	Node* pdestination;
-	int edge_length{0};
+		Node* pdestination;
+		int edge_length{0};
 };
 #endif
 

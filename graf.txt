@@ -13,7 +13,7 @@ Veberod: 8 Torna Hallestad
 Sodra Sandby: 12 Lund
 Sodra Sandby: 4 Flyinge
 Sodra Sandby: 8 Torna Hallestad
-Sodra Sandby: 25 Kavline
+Sodra Sandby: 25 Kavlinge
 Torna Hallestad: 8 Veberod
 Torna Hallestad: 8 Sodra Sandby
 Staffanstorp: 8 Dalby
@@ -29,4 +29,4 @@ Bjarred: 13 Kavlinge
 Kavlinge: 13 Bjarred
 Kavlinge: 19 Lund
 Kavlinge: 20 Lomma
-Kavlinge: 25 Sodra Sandby
+Kavlinge: 25 Sodra Sandby 

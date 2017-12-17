@@ -13,10 +13,9 @@ class Edge;
 class Dijkstra{
 	public:
 		Dijkstra(){};
-	
-		string dijkstra(Node* start);
-		string dijkstra(Node* start, int alternative);
-		string print(Node* start_backwards);
+		string dijkstraS(Node* start, int val);
+		
 	private:
+		string tempString;
 }; 
 #endif
