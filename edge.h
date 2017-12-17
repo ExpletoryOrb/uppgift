@@ -20,4 +20,3 @@ class Edge{
 		int edge_length{0};
 };
 #endif
-
