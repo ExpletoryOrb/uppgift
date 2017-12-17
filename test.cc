@@ -149,14 +149,3 @@ int main(){
 		cout << "test 4: Dijkstra number of jumps passed!" << endl;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
