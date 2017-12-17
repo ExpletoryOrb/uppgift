@@ -57,11 +57,3 @@ string Dijkstra::dijkstraS(Node* start, int val) {
 	*/
 	return val == 0 ? tempString : std::to_string(backwards_log.size()-1);
 }
-
-
-
-
-
-
-
-
