@@ -14,10 +14,11 @@ class Dijkstra{
 	public:
 		Dijkstra(){};
 		string dijkstraS(Node* start);
+		
 	protected:
 		string tempString;
 	private:
-		int cost(Edge e);
+		virtual int cost(Edge e);
 }; 
 
 class Dijkstra_dist : public Dijkstra{

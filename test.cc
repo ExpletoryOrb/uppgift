@@ -131,11 +131,20 @@ bool test4(){
 	boden.addEdge(&lulea, 1);
 	flyinge.addEdge(&lulea, 5);
 	
+	
+	/*
+	lund.addEdge(&dalby,10);
+    lund.addEdge(&sandby,1);
+	dalby.addEdge(&flyinge,20);
+    sandby.addEdge(&hallestad,2);
+	hallestad.addEdge(&flyinge,3);
+	*/
+	
 	Dijkstra* ds = new Dijkstra_jumps;
 	string s = ds -> dijkstraS(&lund);
 	cout << s << endl;
 	
-	string test_string{"Lund\nSodra Sandby\nTorna Hallestad\nFlyinge\nLulea\n8\n"};
+	string test_string{"Lund\nDalby\nFlyinge\nLulea\n3\n"};
 	assert(s.compare(test_string) == 0);
 	return true;
 }
