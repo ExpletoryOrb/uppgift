@@ -19,26 +19,29 @@ string Dijkstra::dijkstraS(Node* start) {
 	std::vector<Edge> temp;
 	int a;
 	Node* start_backwards;
+	int the_cost{0};
 	
 	/** Main algorithm, explained in detail on each row. */
-	while (!ns.isEmpty()) {//runs for all nodes
-		Node* n = ns.removeMin();//returns node and removes it in nodeset
-		temp = n->getEdges();//vector with all edges for a node
-		for(unsigned int i = 0; i < temp.size(); ++i) {//runs for all edges on the node
-			temp[i].setLength(0);// 0 == shortest distance in (km), 10000 (high value) == shortest distance in number of nodes passed
-			a = temp[i].getLength() + n->getValue();//set the value of current node
-			if(a < temp[i].getDestination()->getValue()) {//if current node is less then the next node(destination)
-				temp[i].getDestination()->setValue(a);//set destiantion_value -> length + value
-				temp[i].getDestination()->setParent(n);//set parent node
-				ns.add(temp[i].getDestination());//add new node to the nodeset
+	while (!ns.isEmpty()) {	//runs for all nodes
+		Node* n = ns.removeMin(); //returns node and removes it in nodeset
+		temp = n->getEdges(); //vector with all edges for a node
+		for(unsigned int i = 0; i < temp.size(); ++i) {	//runs for all edges on the node
+			a = cost(temp[i]) + n->getValue();
+			
+			if(a < temp[i].getDestination()->getValue()) { //if current node is less then the next node(destination)
+				temp[i].getDestination()->setValue(a); //set the value of current node
+				temp[i].getDestination()->setParent(n);	//set parent node				
+				ns.add(temp[i].getDestination()); //add new node to the nodeset	
+				
 				if(i == temp.size()-1){
 					start_backwards = temp[i].getDestination(); //save last node, used later
+					the_cost = temp[i].getDestination() -> getValue();
 				}
 			}
 		}
 	}
-	
-	/** Adds all parents to log */
+
+	 /** Adds all parents to log */
 	std::deque<Node*> backwards_log;
 	while( start_backwards -> getParent() != 0){
 		backwards_log.push_front(start_backwards);
@@ -51,6 +54,9 @@ string Dijkstra::dijkstraS(Node* start) {
 		tempString.append(backwards_log[i] -> getName());
 		tempString.append("\n");
 	}
+	tempString.append(std::to_string(the_cost));
+	tempString.append("\n");
+	
 	/**
 	return the number of jumps to destination or the string with which
 	route was taken depending on what mode the user chose 
@@ -58,18 +64,17 @@ string Dijkstra::dijkstraS(Node* start) {
 	return tempString;
 }
 
-//val == 0 ? tempString : std::to_string(backwards_log.size()-1);
 
-int Dijkstra::cost(){
-	return 0;
+int Dijkstra::cost(Edge e){
+	return e.getLength();
 }
 
-int Dijkstra_dist::cost(){
-	return 0;
+int Dijkstra_dist::cost(Edge e){
+	return e.getLength();;
 }
 
-int Dijkstra_jumps::cost(){
-	return 0;
+int Dijkstra_jumps::cost(Edge e){
+	return 1;
 }
 
 

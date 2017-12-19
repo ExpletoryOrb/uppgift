@@ -14,17 +14,17 @@ class Dijkstra{
 	public:
 		Dijkstra(){};
 		string dijkstraS(Node* start);
-		int cost();
-		
 	protected:
 		string tempString;
+	private:
+		//int cost(Edge e);
 }; 
 
 class Dijkstra_dist : public Dijkstra{
 	public:
 		using Dijkstra::Dijkstra;
 		using Dijkstra::dijkstraS;
-		int cost();
+		int cost(Edge e);
 	
 	private:
 		
@@ -34,7 +34,7 @@ class Dijkstra_jumps : public Dijkstra{
 	public:
 		using Dijkstra::Dijkstra;
 		using Dijkstra::dijkstraS;
-		int cost();
+		int cost(Edge e);
 		
 	private:
 		
