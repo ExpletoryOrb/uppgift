@@ -16,8 +16,3 @@ Node* Edge::getDestination(){
 int Edge::getLength() const{
 	return edge_length;
 }
-
-/** Sets the length to the given value */
-void Edge::setLength(int length){
-	edge_length = edge_length + length;
-}
