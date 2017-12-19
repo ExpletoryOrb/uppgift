@@ -17,7 +17,7 @@ class Dijkstra{
 	protected:
 		string tempString;
 	private:
-		//int cost(Edge e);
+		int cost(Edge e);
 }; 
 
 class Dijkstra_dist : public Dijkstra{
