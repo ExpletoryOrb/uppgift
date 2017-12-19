@@ -12,6 +12,7 @@ using std::string;
 class Graph{
 	public:
 		Graph() : nodes() {};
+		~Graph();
 		Graph(std::istream& in);
 		void addNode(const string& name);
 		Node* find(const string& name);

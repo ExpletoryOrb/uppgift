@@ -13,9 +13,30 @@ class Edge;
 class Dijkstra{
 	public:
 		Dijkstra(){};
-		string dijkstraS(Node* start, int val);
+		string dijkstraS(Node* start);
+		int cost();
 		
-	private:
+	protected:
 		string tempString;
 }; 
+
+class Dijkstra_dist : public Dijkstra{
+	public:
+		using Dijkstra::Dijkstra;
+		using Dijkstra::dijkstraS;
+		int cost();
+	
+	private:
+		
+};
+
+class Dijkstra_jumps : public Dijkstra{
+	public:
+		using Dijkstra::Dijkstra;
+		using Dijkstra::dijkstraS;
+		int cost();
+		
+	private:
+		
+};
 #endif

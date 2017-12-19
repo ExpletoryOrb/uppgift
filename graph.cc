@@ -35,6 +35,13 @@ Graph::Graph(std::istream& in){
 	}
 }
 
+
+Graph::~Graph(){
+	for(Node* n : nodes){
+		delete n;
+	}
+}
+
 /** Add node with the given name to nodes if it does not yet exist */
 void Graph::addNode(const string& name){
 	if(!(contains(name))){

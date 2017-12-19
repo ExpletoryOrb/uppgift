@@ -11,7 +11,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-string Dijkstra::dijkstraS(Node* start, int val) {
+string Dijkstra::dijkstraS(Node* start) {
 	NodeSet ns{};
 	start->setValue(0);
 	ns.add(start);
@@ -25,7 +25,7 @@ string Dijkstra::dijkstraS(Node* start, int val) {
 		Node* n = ns.removeMin();//returns node and removes it in nodeset
 		temp = n->getEdges();//vector with all edges for a node
 		for(unsigned int i = 0; i < temp.size(); ++i) {//runs for all edges on the node
-			temp[i].setLength(val);// 0 == shortest distance in (km), 10000 (high value) == shortest distance in number of nodes passed
+			temp[i].setLength(0);// 0 == shortest distance in (km), 10000 (high value) == shortest distance in number of nodes passed
 			a = temp[i].getLength() + n->getValue();//set the value of current node
 			if(a < temp[i].getDestination()->getValue()) {//if current node is less then the next node(destination)
 				temp[i].getDestination()->setValue(a);//set destiantion_value -> length + value
@@ -55,5 +55,37 @@ string Dijkstra::dijkstraS(Node* start, int val) {
 	return the number of jumps to destination or the string with which
 	route was taken depending on what mode the user chose 
 	*/
-	return val == 0 ? tempString : std::to_string(backwards_log.size()-1);
+	return tempString;
 }
+
+//val == 0 ? tempString : std::to_string(backwards_log.size()-1);
+
+int Dijkstra::cost(){
+	return 0;
+}
+
+int Dijkstra_dist::cost(){
+	return 0;
+}
+
+int Dijkstra_jumps::cost(){
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
