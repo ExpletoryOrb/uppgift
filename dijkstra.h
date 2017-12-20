@@ -13,23 +13,16 @@ class Edge;
 class Dijkstra{
 	public:
 		Dijkstra(){};
-		string dijkstraS(Node* start);
+		string dijkstraS(Node* start, Node* dest);
+		virtual ~Dijkstra() = default;
 		
 	protected:
 		string tempString;
 	private:
 		virtual int cost(Edge e);
+		Node* start_backwards;
+		bool tempToggle = false;
 }; 
-
-class Dijkstra_dist : public Dijkstra{
-	public:
-		using Dijkstra::Dijkstra;
-		using Dijkstra::dijkstraS;
-		int cost(Edge e);
-	
-	private:
-		
-};
 
 class Dijkstra_jumps : public Dijkstra{
 	public:
@@ -37,7 +30,6 @@ class Dijkstra_jumps : public Dijkstra{
 		using Dijkstra::dijkstraS;
 		int cost(Edge e);
 		
-	private:
-		
+	private:	
 };
 #endif

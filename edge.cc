@@ -16,3 +16,7 @@ Node* Edge::getDestination(){
 int Edge::getLength() const{
 	return edge_length;
 }
+
+int Edge::getJump() const{
+	return 1;
+}

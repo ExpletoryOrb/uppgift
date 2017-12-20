@@ -101,13 +101,16 @@ bool test3(){
 	dalby.addEdge(&flyinge,20);
     sandby.addEdge(&hallestad,2);
 	hallestad.addEdge(&flyinge,3);
-	flyinge.addEdge(&boden, 5);
+	flyinge.addEdge(&boden, 1);
 	boden.addEdge(&lulea, 1);
-	flyinge.addEdge(&lulea, 2);
+	flyinge.addEdge(&lulea, 5);
 	
 	Dijkstra ds{};
-	string s = ds.dijkstraS(&lund);
-	string test_string{"Lund\nSodra Sandby\nTorna Hallestad\nFlyinge\nLulea\n8\n"};
+	string s = ds.dijkstraS(&lund, &lulea);
+	// cout << endl << endl;
+	// cout << s << endl;
+	
+	string test_string{"Lund\nSodra Sandby\nTorna Hallestad\nFlyinge\nBoden\nLulea\n8\n"};
 	assert(s.compare(test_string) == 0);
 	return true;
 }
@@ -131,20 +134,68 @@ bool test4(){
 	boden.addEdge(&lulea, 1);
 	flyinge.addEdge(&lulea, 5);
 	
+	Dijkstra* ds = new Dijkstra_jumps;
+	string s = ds -> dijkstraS(&lund, &lulea);
+	// cout << endl << endl;
+	// cout << s << endl;
 	
-	/*
+	string test_string{"Lund\nDalby\nFlyinge\nLulea\n3\n"};
+	assert(s.compare(test_string) == 0);
+	return true;
+}
+
+bool test5(){
+	Node lund{"Lund"};
+    Node dalby{"Dalby"};
+    Node sandby{"Sodra Sandby"};
+    Node hallestad{"Torna Hallestad"};
+    Node flyinge{"Flyinge"};
+	Node lulea{"Lulea"};
+	Node boden{"Boden"};
+	
 	lund.addEdge(&dalby,10);
     lund.addEdge(&sandby,1);
 	dalby.addEdge(&flyinge,20);
     sandby.addEdge(&hallestad,2);
 	hallestad.addEdge(&flyinge,3);
-	*/
+	flyinge.addEdge(&boden, 1);
+	boden.addEdge(&lulea, 1);
+	flyinge.addEdge(&lulea, 5);
+	
+	Dijkstra ds{};
+	string s = ds.dijkstraS(&lund, &flyinge);
+	//cout << endl << endl;
+	//cout << s << endl;
+	
+	string test_string{"Lund\nSodra Sandby\nTorna Hallestad\nFlyinge\n6\n"};
+	assert(s.compare(test_string) == 0);
+	return true;
+}
+
+bool test6(){
+	Node lund{"Lund"};
+    Node dalby{"Dalby"};
+    Node sandby{"Sodra Sandby"};
+    Node hallestad{"Torna Hallestad"};
+    Node flyinge{"Flyinge"};
+	Node lulea{"Lulea"};
+	Node boden{"Boden"};
+	
+	lund.addEdge(&dalby,10);
+    lund.addEdge(&sandby,1);
+	dalby.addEdge(&flyinge,20);
+    sandby.addEdge(&hallestad,2);
+	hallestad.addEdge(&flyinge,3);
+	flyinge.addEdge(&boden, 1);
+	boden.addEdge(&lulea, 1);
+	flyinge.addEdge(&lulea, 5);
 	
 	Dijkstra* ds = new Dijkstra_jumps;
-	string s = ds -> dijkstraS(&lund);
-	cout << s << endl;
+	string s = ds -> dijkstraS(&lund, &flyinge);
+	//cout << endl << endl;
+	//cout << s << endl;
 	
-	string test_string{"Lund\nDalby\nFlyinge\nLulea\n3\n"};
+	string test_string{"Lund\nDalby\nFlyinge\n2\n"};
 	assert(s.compare(test_string) == 0);
 	return true;
 }
@@ -153,16 +204,19 @@ int main(){
 	if(test1()){
 		cout << "test 1: Graph from file passed!" << endl;
 	}
-	
 	if(test2()){
 		cout << "test 2: NodeSet passed!" << endl;
 	}
-	
 	if(test3()){
 		cout << "test 3: Dijkstra normal algorithm passed!" << endl;
 	}
-	
 	if(test4()){
 		cout << "test 4: Dijkstra number of jumps passed!" << endl;
+	}
+	if(test5()){
+		cout << "test 5: Dijkstra normal to destination passed!" << endl;
+	}
+	if(test6()){
+		cout << "test 6: Dijkstra jump to destination passed!" << endl;
 	}
 }

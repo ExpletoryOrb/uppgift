@@ -35,7 +35,6 @@ Graph::Graph(std::istream& in){
 	}
 }
 
-
 Graph::~Graph(){
 	for(Node* n : nodes){
 		delete n;
